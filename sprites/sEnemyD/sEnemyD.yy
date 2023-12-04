@@ -13,8 +13,8 @@
   "edgeFiltering": false,
   "For3D": false,
   "frames": [
-    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"6379799d-3abf-44be-9483-d39324f3932f",},
-    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"5cb120a4-53bb-49d5-b79b-1f56a80cfbd3",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"5c08d743-04df-4d32-b16a-947f5aa59a48",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"ff492853-5b64-4781-a388-4c7c9a78ef6a",},
   ],
   "gridX": 0,
   "gridY": 0,
@@ -55,8 +55,8 @@
     "timeUnits": 1,
     "tracks": [
       {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"1.0","Keyframes":[
-            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"6379799d-3abf-44be-9483-d39324f3932f","path":"sprites/sEnemyD/sEnemyD.yy",},},},"Disabled":false,"id":"71daf6c3-c8a3-44a2-a70a-c94cddda930e","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
-            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"5cb120a4-53bb-49d5-b79b-1f56a80cfbd3","path":"sprites/sEnemyD/sEnemyD.yy",},},},"Disabled":false,"id":"84a3eb9e-055a-4270-a84d-6f6689bc853c","IsCreationKey":false,"Key":1.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"5c08d743-04df-4d32-b16a-947f5aa59a48","path":"sprites/sEnemyD/sEnemyD.yy",},},},"Disabled":false,"id":"27abd752-eb94-4ed8-98c2-c62593ef5291","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"ff492853-5b64-4781-a388-4c7c9a78ef6a","path":"sprites/sEnemyD/sEnemyD.yy",},},},"Disabled":false,"id":"0d47b6f2-b160-4b5d-8769-04929751b623","IsCreationKey":false,"Key":1.0,"Length":1.0,"Stretch":false,},
           ],},"modifiers":[],"spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange": null,
