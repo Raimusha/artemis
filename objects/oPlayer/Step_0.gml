@@ -38,15 +38,24 @@ y += vsp;
 #region Animation
 if (!place_meeting(x, y + 1, oWall)) {
     // Airborne
-    //sprite_index = sPlayerA;
+    //sprite_index = sPlayerA; // Commenting this out as you might have different airborne sprite
     image_speed = 0;
     image_index = sign(vsp) > 0 ? 1 : 0;
 } else {
     // On Ground
-    image_speed = 1;
-    //sprite_index = hsp == 0 ? sPlayer : sPlayerR;
+    if (abs(hsp) > 0) {
+        sprite_index = sPlayerW;  // Change to walking sprite
+        image_speed = 0.25;  // Adjust as needed for smooth animation
+    } else {
+        sprite_index = sPlayer;  // Change back to idle sprite when not moving
+        image_speed = 0;  // No animation needed for idle (adjust as per your design)
+    }
 }
-image_xscale = hsp != 0 ? sign(hsp) : image_xscale;
+
+// Flip sprite based on direction
+if (hsp != 0) {
+    image_xscale = sign(hsp);
+}
 #endregion
 
 #region Grappling Hook Mechanics
@@ -74,3 +83,5 @@ if (grappling) {
     }
 }
 #endregion
+// Player bouncing on the tree mechanics
+bounceState();

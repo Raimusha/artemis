@@ -6,6 +6,9 @@ controller = 0;
 hascontrol = true;
 reduced_falling_speed = 2;
 
+enum PlayerState {Normal, Bounce}
+state = PlayerState.Normal;
+
 
 
 // Grappling Hook Variables
