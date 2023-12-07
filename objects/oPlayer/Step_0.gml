@@ -66,36 +66,72 @@ if (hsp != 0) {
 }
 #endregion
 
+
+#region Pull Towards oHook
+// Check if oHook exists and is attached
+if (instance_exists(oHook) && oHook.attached) {
+    // Calculate direction and distance to the hook
+    var dir_to_hook = point_direction(x, y, oHook.x, oHook.y);
+    var dist_to_hook = point_distance(x, y, oHook.x, oHook.y);
+
+    // Move towards the hook if not already there
+    if (dist_to_hook > 0) {  // '5' is a threshold to stop movement
+        var pull_speed = 100;  // Adjust the speed as necessary
+        hsp = lengthdir_x(pull_speed, dir_to_hook);
+        vsp = lengthdir_y(pull_speed, dir_to_hook);
+    } else {
+        // Arrived at hook, reset grappling and destroy the hook
+        grappling = false;
+        instance_destroy(oHook);
+    }
+}
+#endregion
+
 #region Grappling Hook Mechanics
 if (key_grapple && !grappling && grappleAvailable) {
     grappling = true;
     grapple_length = 0;
-    grappleAvailable = false;  // Set grapple availability to false after using it
+    grappleAvailable = false;
 
     // Determine grapple target based on player's facing direction
-    var dir = (image_xscale == 1) ? 0 : 180; // Assumes player faces right when image_xscale is 1, left when -1
+    var dir = (image_xscale == 1) ? 0 : 180;
     grapple_target_x = x + lengthdir_x(grapple_max_length, dir);
     grapple_target_y = y + lengthdir_y(grapple_max_length, dir);
 
     // Create the grappling hook object
-    var hook = instance_create_layer(x + 4, y, "Instances", oHook); // Adjust layer as needed
+    var hook = instance_create_layer(x + 4, y, "Instances", oHook);
     hook.direction = dir;
     hook.speed = grapple_speed;
-    hook.image_xscale = image_xscale; // Set the hook's sprite to face the same direction as the player
+    hook.image_xscale = image_xscale;
 }
 
 if (grappling) {
-    dir = point_direction(x, y, grapple_target_x, grapple_target_y);
-    grapple_length += grapple_speed;
-    if (grapple_length > grapple_max_length || place_meeting(x + lengthdir_x(grapple_length, dir), y + lengthdir_y(grapple_length, dir), oWall)) {
-        grappling = false;
-    } else if (point_distance(x, y, grapple_target_x, grapple_target_y) < 5) {
-        grappling = false;
+    if (instance_exists(oHook) && !oHook.attached) {
+        // The grappling hook is still in motion
+        dir = point_direction(x, y, grapple_target_x, grapple_target_y);
+        grapple_length += grapple_speed;
+        
+        // Move the player towards the grappling hook
+        if (grapple_length <= grapple_max_length) {
+            hsp = lengthdir_x(4, dir);
+            vsp = lengthdir_y(4, dir);
+        } else {
+            // Grappling hook has reached its maximum length without attaching
+            grappling = false;
+            grappleAvailable = true;
+            if (instance_exists(oHook)) {
+                instance_destroy(oHook);
+            }
+        }
     } else {
-        hsp = lengthdir_x(4, dir);
-        vsp = lengthdir_y(4, dir);
+        // The grappling hook has attached
+        vsp -= 5;  // Increase the player's upward speed
+        grappling = false;
+        grappleAvailable = true;
+        if (instance_exists(oHook)) {
+            instance_destroy(oHook);
+        }
     }
-    vsp += grv;  // Continue applying gravity even while grappling
 }
 #endregion
 

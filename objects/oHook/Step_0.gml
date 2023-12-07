@@ -6,7 +6,7 @@
 
 // Adjust the position and possibly the angle of each rope segment
 // to create a rope effect from the player to the hook
-vsp = 1;
+//vsp = 1;
 
 // Calculate the distance from the grappling hook to the player
 var distance = point_distance(x,y, oPlayer.x, oPlayer.y);
