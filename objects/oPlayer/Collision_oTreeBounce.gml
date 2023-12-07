@@ -1,6 +1,9 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-state = PlayerState.Bounce;
+// Collision Event with oTreeBounce in oPlayer
 
+// Propelling the player upward and resetting grapple
+vsp = -12;  // Bounce strength
+grappleAvailable = true;
 

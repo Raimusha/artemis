@@ -6,15 +6,21 @@ controller = 0;
 hascontrol = true;
 reduced_falling_speed = 2;
 
-enum PlayerState {Normal, Bounce}
+enum PlayerState {Normal, Grappling}
 state = PlayerState.Normal;
 
 
+// Grappling hook variables
+grappling = false;  // Indicates if the player is currently using the grappling hook
+grapple_speed = 10;  // Speed of the grappling hook
+grapple_max_length = 200;  // Maximum length of the grappling hook
+grapple_length = 0;  // Current length of the grappling hook
 
-// Grappling Hook Variables
-grapple_speed = 10; // Speed at which the grapple moves
-grapple_length = 0; // Current length of the grapple
-grapple_max_length = 300; // Maximum length the grapple can extend
-grappling = false; // Is the player currently using the grapple
-grapple_target_x = 0; // X coordinate of the grapple's target
-grapple_target_y = 0; // Y coordinate of the grapple's target
+// Rope segments list
+//rope_segments = ds_list_create(); // Delete later
+
+
+// maximum length of the grappling hook's rope
+grapple_max_distance = 100; // adjust as needed
+grappleAvaliable = true;
+

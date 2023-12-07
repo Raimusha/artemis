@@ -8,10 +8,13 @@ controller = key_left || key_right || key_jump ? 1 : 0;
 #region Calculate Movement
 var move = key_right - key_left;
 hsp = move * walksp;
-vsp += grv;  // Apply gravity
 
+// Apply gravity
+vsp += grv;
+
+// Regular jumping logic
 if (place_meeting(x, y + 1, oWall) && key_jump) {
-    vsp = -7;  // Jumping
+    vsp = -7;  // Jumping strength
 }
 #endregion
 
@@ -33,6 +36,11 @@ if (place_meeting(x, y + vsp, oWall)) {
     vsp = 0;
 }
 y += vsp;
+
+key_grapple = keyboard_check_pressed(vk_shift);
+if (place_meeting(x, y + 1, oWall)) {
+    grappleAvailable = true;
+}
 #endregion
 
 #region Animation
@@ -59,15 +67,25 @@ if (hsp != 0) {
 #endregion
 
 #region Grappling Hook Mechanics
-if (mouse_check_button(mb_left) && !grappling) {
+if (key_grapple && !grappling && grappleAvailable) {
     grappling = true;
-    grapple_target_x = mouse_x;
-    grapple_target_y = mouse_y;
     grapple_length = 0;
+    grappleAvailable = false;  // Set grapple availability to false after using it
+
+    // Determine grapple target based on player's facing direction
+    var dir = (image_xscale == 1) ? 0 : 180; // Assumes player faces right when image_xscale is 1, left when -1
+    grapple_target_x = x + lengthdir_x(grapple_max_length, dir);
+    grapple_target_y = y + lengthdir_y(grapple_max_length, dir);
+
+    // Create the grappling hook object
+    var hook = instance_create_layer(x + 4, y, "Instances", oHook); // Adjust layer as needed
+    hook.direction = dir;
+    hook.speed = grapple_speed;
+    hook.image_xscale = image_xscale; // Set the hook's sprite to face the same direction as the player
 }
 
 if (grappling) {
-    var dir = point_direction(x, y, grapple_target_x, grapple_target_y);
+    dir = point_direction(x, y, grapple_target_x, grapple_target_y);
     grapple_length += grapple_speed;
     if (grapple_length > grapple_max_length || place_meeting(x + lengthdir_x(grapple_length, dir), y + lengthdir_y(grapple_length, dir), oWall)) {
         grappling = false;
@@ -77,11 +95,7 @@ if (grappling) {
         hsp = lengthdir_x(4, dir);
         vsp = lengthdir_y(4, dir);
     }
-	// If the player is falling, apply the reduced falling speed
-    if (vsp > 0) {
-        vsp = min(vsp, reduced_falling_speed);
-    }
+    vsp += grv;  // Continue applying gravity even while grappling
 }
 #endregion
-// Player bouncing on the tree mechanics
-bounceState();
+

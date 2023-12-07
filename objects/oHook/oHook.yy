@@ -1,11 +1,11 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "oPlayer",
+  "name": "oHook",
   "eventList": [
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,},
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,},
-    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":{"name":"oTreeBounce","path":"objects/oTreeBounce/oTreeBounce.yy",},"eventNum":0,"eventType":4,"isDnD":false,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,},
   ],
   "managed": true,
   "overriddenProperties": [],
@@ -18,7 +18,7 @@
   "physicsAngularDamping": 0.1,
   "physicsDensity": 0.5,
   "physicsFriction": 0.2,
-  "physicsGroup": 0,
+  "physicsGroup": 1,
   "physicsKinematic": false,
   "physicsLinearDamping": 0.1,
   "physicsObject": false,
@@ -30,12 +30,9 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "sPlayer",
-    "path": "sprites/sPlayer/sPlayer.yy",
+    "name": "sHook",
+    "path": "sprites/sHook/sHook.yy",
   },
-  "spriteMaskId": {
-    "name": "sPlayer",
-    "path": "sprites/sPlayer/sPlayer.yy",
-  },
+  "spriteMaskId": null,
   "visible": true,
 }
