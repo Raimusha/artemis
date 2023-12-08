@@ -1,0 +1,13 @@
+Game Licensing and Acknowledgments
+Music
+
+Music Composed by alkakrab
+
+Website: alkakrab on itch.io
+
+Sound Effects
+Sound Effects Provided by Kronobits
+Website: Kronobits on itch.io
+Game Engine and Template
+Platformer Game Template and Engine Provided by ShaunJS
+Website: ShaunJS's Complete Platformer Tutorial Series on itch.io
