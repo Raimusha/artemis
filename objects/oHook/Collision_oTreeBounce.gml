@@ -1,6 +1,9 @@
 /// @description Insert description here
 // You can write your code in this editor
 // Collision Event of oHook with oTreeBush
+// Play the sound
+audio_play_sound(sImpact, 1, false);
+
 
 // Increase oPlayer's vertical speed
 if (instance_exists(oPlayer)) {

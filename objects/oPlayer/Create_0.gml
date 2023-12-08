@@ -1,3 +1,4 @@
+global.grappleAvaliable = true;
 hsp = 0;
 vsp = 0;
 grv = 0.3;
@@ -22,5 +23,5 @@ grapple_length = 0;  // Current length of the grappling hook
 
 // maximum length of the grappling hook's rope
 grapple_max_distance = 100; // adjust as needed
-grappleAvaliable = true;
+
 

@@ -54,9 +54,19 @@ if (!place_meeting(x, y + 1, oWall)) {
     if (abs(hsp) > 0) {
         sprite_index = sPlayerW;  // Change to walking sprite
         image_speed = 0.25;  // Adjust as needed for smooth animation
+
+        // Play walking sound if moving on the ground
+        if (!audio_is_playing(sWalk)) {
+            audio_play_sound(sWalk, 4, false);
+        }
     } else {
         sprite_index = sPlayer;  // Change back to idle sprite when not moving
         image_speed = 0;  // No animation needed for idle (adjust as per your design)
+
+        // Stop playing walking sound if not moving
+        if (audio_is_playing(sWalk)) {
+            audio_stop_sound(sWalk);
+        }
     }
 }
 
@@ -65,6 +75,7 @@ if (hsp != 0) {
     image_xscale = sign(hsp);
 }
 #endregion
+
 
 
 #region Pull Towards oHook
@@ -91,7 +102,9 @@ if (instance_exists(oHook) && oHook.attached) {
 if (key_grapple && !grappling && grappleAvailable) {
     grappling = true;
     grapple_length = 0;
+	if (!global.cheatGrapple) {
     grappleAvailable = false;
+	}
 
     // Determine grapple target based on player's facing direction
     var dir = (image_xscale == 1) ? 0 : 180;
@@ -127,7 +140,6 @@ if (grappling) {
         // The grappling hook has attached
         vsp -= 5;  // Increase the player's upward speed
         grappling = false;
-        grappleAvailable = true;
         if (instance_exists(oHook)) {
             instance_destroy(oHook);
         }
@@ -135,3 +147,11 @@ if (grappling) {
 }
 #endregion
 
+
+// oPlayer Step Event - Cheat Code Toggle Section
+
+if (keyboard_check_pressed(ord("C"))) {
+    global.cheatGrapple = !global.cheatGrapple;
+    var message = global.cheatGrapple ? "Grapple Hook Cheat Activated!" : "Grapple Hook Cheat Deactivated!";
+    ShowHudNotification(message);
+}
